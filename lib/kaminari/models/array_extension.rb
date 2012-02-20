@@ -3,6 +3,7 @@ module Kaminari
   # Kind of Array that can paginate
   class PaginatableArray < Array
     include Kaminari::ConfigurationMethods::ClassMethods
+    include Kaminari::PageScopeMethods
 
     attr_internal_accessor :limit_value, :offset_value
 
