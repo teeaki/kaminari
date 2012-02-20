@@ -10,6 +10,13 @@ module Kaminari
       end
     end
 
+    def per_plus_one(num)
+      list = per(num + 1).to_a
+      total_count = list.size
+      list.pop if total_count > num
+      PaginatableArray.new(list, :total_count => total_count)
+    end
+
     def padding(num)
       offset(offset_value + num.to_i)
     end

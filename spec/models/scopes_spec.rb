@@ -158,6 +158,19 @@ describe Kaminari::ActiveRecordExtension do
         subject { ActiveRecord::Base.descendants }
         its(:length) { should_not == 0 }
       end
+
+      describe '#per_plus_one' do
+        context 'full' do
+          subject { model_class.page(1).per_plus_one(5) }
+          it { should have(5).users }
+          its(:total_count) { should == 6 }
+        end
+        context 'lack' do
+          subject { model_class.page(4).per_plus_one(30) }
+          it { should have(7).users }
+          its(:total_count) { should == 7 }
+        end
+      end
     end
   end
 end
