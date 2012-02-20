@@ -12,6 +12,7 @@ module Kaminari
 
     def per_plus_one(num)
       list = per(num + 1).to_a
+      per(num) # reset offset value...
       total_count = list.size
       list.pop if total_count > num
       PaginatableArray.new(list, :total_count => total_count, :limit => num, :offset => offset_value)
