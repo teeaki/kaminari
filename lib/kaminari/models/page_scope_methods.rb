@@ -14,7 +14,7 @@ module Kaminari
       list = per(num + 1).to_a
       total_count = list.size
       list.pop if total_count > num
-      PaginatableArray.new(list, :total_count => total_count)
+      PaginatableArray.new(list, :total_count => total_count, :limit => limit_value, :offset => offset_value)
     end
 
     def padding(num)
