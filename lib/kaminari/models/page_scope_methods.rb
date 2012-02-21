@@ -10,12 +10,13 @@ module Kaminari
       end
     end
 
-    def per_plus_one(num)
-      list = per(num + 1).to_a
-      per(num) # reset offset value...
+    def per_skimp(limit)
+      limit = (limit || 10).to_i
+      offset = offset_value / limit_value * limit
+      list = limit(limit + 1).offset(offset).to_a
       total_count = list.size
-      list.pop if total_count > num
-      PaginatableArray.new(list, :total_count => total_count, :limit => num, :offset => offset_value)
+      list.pop if total_count > limit
+      PaginatableArray.new(list, :total_count => total_count, :limit => limit, :offset => offset)
     end
 
     def padding(num)

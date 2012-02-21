@@ -161,14 +161,14 @@ describe Kaminari::ActiveRecordExtension do
 
       describe '#per_plus_one' do
         context 'full' do
-          subject { model_class.page(1).per_plus_one(5) }
+          subject { model_class.page(1).per_skimp(5) }
           it { should have(5).users }
           its(:total_count) { should == 6 }
         end
         context 'lack' do
-          subject { model_class.page(4).per_plus_one(30) }
-          it { should have(7).users }
-          its(:total_count) { should == 7 }
+          subject { model_class.page(4).per_skimp(30) }
+          it { should have(10).users }
+          its(:total_count) { should == 10 }
         end
       end
     end
