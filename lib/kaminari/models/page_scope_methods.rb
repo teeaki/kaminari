@@ -14,7 +14,7 @@ module Kaminari
       limit = (limit || 10).to_i
       offset = offset_value / limit_value * limit
       list = limit(limit + 1).offset(offset).to_a
-      total_count = list.size
+      total_count = list.size + offset
       list.pop if total_count > limit
       PaginatableArray.new(list, :total_count => total_count, :limit => limit, :offset => offset)
     end
