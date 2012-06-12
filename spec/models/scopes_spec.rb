@@ -168,7 +168,8 @@ describe Kaminari::ActiveRecordExtension do
         context 'lack' do
           subject { model_class.page(4).per_skimp(30) }
           it { should have(10).users }
-          its(:total_count) { should == 10 }
+          its(:total_count) { should == 100 }
+          its(:size) { should == 10 }
         end
       end
     end
