@@ -52,6 +52,14 @@ module Kaminari
     def offset(num)
       self.class.new @_original_array, :limit => @_limit_value, :offset => num, :total_count => @_total_count
     end
+
+    def prev?
+      @_offset_value > 0
+    end
+
+    def next?
+       @_offset_value + @_limit_value > @_total_count
+    end
   end
 
   # Wrap an Array object to make it paginatable
