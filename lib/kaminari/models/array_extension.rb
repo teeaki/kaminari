@@ -58,7 +58,23 @@ module Kaminari
     end
 
     def next?
-       @_offset_value + @_limit_value > @_total_count
+       next_offset < @_total_count
+    end
+
+    def prev_offset
+      [0, @_offset_value - @_limit_value].max
+    end
+
+    def next_offset
+      @_offset_value + @_limit_value
+    end
+
+    def prev_page
+      (prev_offset / @_limit_value).succ
+    end
+
+    def next_page
+      (next_offset / @_limit_value).succ
     end
   end
 
